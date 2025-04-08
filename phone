@@ -1,0 +1,12 @@
+#!/bin/bash
+
+if [ $# -eq 0 ]; then
+	echo "Usage: phone searchfor [...]"
+	echo "(You didn't tell me what you want to search for.)"
+	exit 1
+fi
+
+search_term=$(echo "$@" | sed 's/ /|/g')
+
+egrep "$search_term" $HOME/mydata | awk -f display.awk
+
